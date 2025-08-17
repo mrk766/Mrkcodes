@@ -362,4 +362,115 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         } else {
           state.posts.push({
-            id: 'post_' + Date.now
+            id: 'post_' + Date.nowstate.posts.push({
+            id: 'post_' + Date.now(),
+            user: state.username,
+            title,
+            subject,
+            language,
+            description,
+            code,
+            image,
+            timestamp: new Date().toISOString()
+          });
+        }
+
+        saveData();
+        render();
+        document.getElementById('post-modal').classList.remove('visible');
+      });
+    });
+
+    // Subject switching
+    document.getElementById('subject-list').addEventListener('click', (e) => {
+      if (e.target.tagName === 'LI') {
+        state.selectedSubject = e.target.dataset.subject;
+        render();
+      }
+    });
+
+    // Post grid click
+    document.getElementById('coderoom-posts-container').addEventListener('click', (e) => {
+      const card = e.target.closest('.post-card');
+      if (card) {
+        const postId = card.dataset.postId;
+        navigate('singlePost', postId);
+      }
+    });
+
+    // Favorite / Unfavorite
+    document.getElementById('favorite-post-btn').addEventListener('click', () => {
+      const postId = state.activePostId;
+      if (!postId) return;
+      if (state.favorites.includes(postId)) {
+        state.favorites = state.favorites.filter(f => f !== postId);
+      } else {
+        state.favorites.push(postId);
+      }
+      saveData();
+      render();
+    });
+
+    // Post comments
+    document.getElementById('comment-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      ensureUsername();
+      if (!state.username) return;
+      const input = document.getElementById('comment-input');
+      const text = input.value.trim();
+      if (!text) return;
+      state.comments.push({
+        id: 'comment_' + Date.now(),
+        postId: state.activePostId,
+        user: state.username,
+        text,
+        timestamp: new Date().toISOString()
+      });
+      input.value = '';
+      saveData();
+      render();
+    });
+
+    // Delegated deletes (messages, posts, comments)
+    document.body.addEventListener('click', (e) => {
+      if (e.target.classList.contains('delete-msg')) {
+        const id = e.target.dataset.id;
+        state.messages = state.messages.filter(m => m.id !== id);
+        saveData();
+        render();
+      }
+
+      if (e.target.classList.contains('delete-comment')) {
+        const id = e.target.dataset.id;
+        state.comments = state.comments.filter(c => c.id !== id);
+        saveData();
+        render();
+      }
+
+      if (e.target.classList.contains('view-post-btn')) {
+        const postId = e.target.dataset.postId;
+        navigate('singlePost', postId);
+      }
+
+      if (e.target.classList.contains('copy-code-btn')) {
+        const postId = e.target.dataset.postId;
+        const post = state.posts.find(p => p.id === postId);
+        if (post?.code) copyToClipboard(post.code);
+      }
+
+      if (e.target.classList.contains('copy-btn')) {
+        const code = e.target.dataset.code;
+        if (code) copyToClipboard(code);
+      }
+    });
+
+    // Sorting & searching
+    document.getElementById('post-sort').addEventListener('change', render);
+    document.getElementById('post-search').addEventListener('input', render);
+    document.getElementById('chat-search').addEventListener('input', render);
+  };
+
+  // ---------- INIT ----------
+  setupEventListeners();
+  render();
+});
