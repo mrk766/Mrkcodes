@@ -25,7 +25,7 @@
 
   <!-- App Container -->
   <main id="app-container">
-    <!-- Chatroom View -->
+    <!-- Chatroom -->
     <div id="chatroom-view" class="view active">
       <div class="filter-bar">
         <input type="text" id="chat-search" placeholder="Search chat..." />
@@ -37,7 +37,7 @@
       </form>
     </div>
 
-    <!-- Coderoom View -->
+    <!-- Coderoom -->
     <div id="coderoom-view" class="view">
       <button id="toggle-sidebar" class="sidebar-toggle">☰ Subjects</button>
       <div class="coderoom-sidebar">
@@ -58,7 +58,7 @@
       </div>
     </div>
 
-    <!-- Single Post View -->
+    <!-- Single Post -->
     <div id="single-post-view" class="view">
       <div class="view-header">
         <button id="back-to-coderoom-btn">← Back</button>
@@ -78,7 +78,7 @@
     </div>
   </main>
 
-  <!-- Create/Edit Post Modal -->
+  <!-- Modals -->
   <div id="post-modal" class="modal-overlay">
     <div class="modal-content">
       <button class="modal-close">&times;</button>
@@ -89,7 +89,7 @@
           <input type="text" id="post-title" required />
         </div>
         <div class="form-group">
-          <label for="post-subject">Subject (Select or New)</label>
+          <label for="post-subject">Subject</label>
           <input type="text" id="post-subject" list="subject-options" required />
           <datalist id="subject-options"></datalist>
         </div>
@@ -98,7 +98,7 @@
           <input type="text" id="post-language" placeholder="e.g., javascript" required />
         </div>
         <div class="form-group">
-          <label for="post-description">Description (Markdown supported)</label>
+          <label for="post-description">Description</label>
           <textarea id="post-description" rows="4"></textarea>
         </div>
         <div class="form-group">
@@ -114,7 +114,6 @@
     </div>
   </div>
 
-  <!-- Login Modal -->
   <div id="login-modal" class="modal-overlay">
     <div class="modal-content">
       <h2>Enter Your Name</h2>
@@ -124,7 +123,6 @@
     </div>
   </div>
 
-  <!-- Copy Notification -->
   <div id="copy-notification">Copied!</div>
 
   <!-- Scripts -->
