@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>DevHub</title>
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css"/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💬</text></svg>">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.0.2/marked.min.js"></script>
@@ -23,31 +23,30 @@
     </div>
   </nav>
 
-  <!-- App Container -->
+  <!-- Container -->
   <main id="app-container">
     <!-- Chatroom -->
     <div id="chatroom-view" class="view active">
       <div class="filter-bar">
-        <input type="text" id="chat-search" placeholder="Search chat..." />
+        <input type="text" id="chat-search" placeholder="Search chat..."/>
       </div>
       <div id="chat-feed"></div>
       <form id="chat-input-form">
-        <input type="text" id="chat-message-input" placeholder="Type a message (Markdown supported)..." autocomplete="off" required />
+        <input type="text" id="chat-message-input" placeholder="Type a message (Markdown supported)..." autocomplete="off" required/>
         <button type="submit">Send</button>
       </form>
     </div>
 
     <!-- Coderoom -->
     <div id="coderoom-view" class="view">
-      <button id="toggle-sidebar" class="sidebar-toggle">☰ Subjects</button>
-      <div class="coderoom-sidebar">
+      <aside class="coderoom-sidebar">
         <h3>Subjects</h3>
         <ul id="subject-list"></ul>
-        <input type="text" id="subject-search" placeholder="Search subjects..." />
-      </div>
-      <div class="coderoom-posts">
+        <input type="text" id="subject-search" placeholder="Search subjects..."/>
+      </aside>
+      <section class="coderoom-posts">
         <div class="filter-bar">
-          <input type="text" id="post-search" placeholder="Search posts..." />
+          <input type="text" id="post-search" placeholder="Search posts..."/>
           <select id="post-sort">
             <option value="latest">Last Modified</option>
             <option value="oldest">First Modified</option>
@@ -55,7 +54,7 @@
           </select>
         </div>
         <div id="coderoom-posts-container"></div>
-      </div>
+      </section>
     </div>
 
     <!-- Single Post -->
@@ -86,16 +85,16 @@
       <form id="post-form">
         <div class="form-group">
           <label for="post-title">Title</label>
-          <input type="text" id="post-title" required />
+          <input type="text" id="post-title" required/>
         </div>
         <div class="form-group">
           <label for="post-subject">Subject</label>
-          <input type="text" id="post-subject" list="subject-options" required />
+          <input type="text" id="post-subject" list="subject-options" required/>
           <datalist id="subject-options"></datalist>
         </div>
         <div class="form-group">
           <label for="post-language">Code Language</label>
-          <input type="text" id="post-language" placeholder="e.g., javascript" required />
+          <input type="text" id="post-language" placeholder="e.g., javascript" required/>
         </div>
         <div class="form-group">
           <label for="post-description">Description</label>
@@ -107,7 +106,7 @@
         </div>
         <div class="form-group">
           <label for="post-image">Upload Image (optional)</label>
-          <input type="file" id="post-image" accept="image/*" />
+          <input type="file" id="post-image" accept="image/*"/>
         </div>
         <button type="submit">Publish Post</button>
       </form>
@@ -118,7 +117,7 @@
     <div class="modal-content">
       <h2>Enter Your Name</h2>
       <p>This is a one-time login. Your name will appear with messages and posts.</p>
-      <input type="text" id="username-input" placeholder="e.g., GhostCoder123" required />
+      <input type="text" id="username-input" placeholder="e.g., GhostCoder123" required/>
       <button id="set-username-btn">Continue</button>
     </div>
   </div>
